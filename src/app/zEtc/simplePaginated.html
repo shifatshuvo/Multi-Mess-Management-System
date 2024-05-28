@@ -1,0 +1,147 @@
+<div class="w-full min-h-screen bg-gray-200">
+  <!-- orders -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- 1st condition div start -->
+    <!-- *ngIf="userRole === 'ADMIN'" -->
+    <div >
+      <div class="flex flex-col justify-center p-4 2xl:p-8">
+        <h1 class="text-3xl text-center text-gray-500 font-semibold my-6">
+          Mess Fund
+        </h1>
+        <div class="mb-4">
+          <button
+            routerLink="/admin/orders/create"
+            class="flex items-center bg-blue-600 hover:bg-blue-500 text-gray-50 font-semibold py-1 px-3 rounded-md shadow-md"
+          >
+            <p class="text-base pr-2">Add Fund</p>
+            <fa-icon class="text-2xl" [icon]="plusIcon"></fa-icon>
+          </button>
+        </div>
+        <table class="table-auto text-center font-semibold">
+          <thead class="border-b-8-">
+            <tr class="bg-blue-500 text-gray-200">
+              <th class="px-1 py-4">S.N</th>
+              <th class="px-6 py-2">Cash</th>
+              <th class="px-2 py-2">User Name</th>
+              <!-- <th class="px-2 py-2">Mess name</th> -->
+              <th class="px-6 py-2">Date</th>
+              <th class="px-2 py-2">Action</th>
+            </tr>
+          </thead>
+
+          <tbody class="bg-gray-50">
+            <tr *ngFor="let fund of getPaginatedFunds(); let i = index" class="border-b-2">
+              <td class="bg-blue-200 px-4 py-3">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+              <td class="px-4 py-4 text-gray-500">{{fund.cash}}</td>
+              <td class="bg-blue-200 px-4 py-3 text-gray-900">{{fund.user.name}}</td>
+              <!-- <td class="px-4 py-4 text-gray-500">{{fund.mess.name}}</td> -->
+              <td class="px-4 py-3 text-gray-500">{{fund.date}}</td>
+              <td class="bg-blue-200 px-4 py-3 text-gray-900 space-x-6">
+                <a
+                  routerLink="/fund/update/{{fund.id}}"
+                  class="text-2xl text-green-600 hover:text-green-500"
+                  >
+                  <fa-icon [icon]="editIcon"></fa-icon>
+                </a>
+                <button
+                  (click)="delete(fund.id)"
+                  class="text-2xl text-red-600 hover:text-red-500"
+                >
+                  <fa-icon [icon]="deleteIcon"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+            <!-- btn -->
+            <div *ngIf="funds.length > pageSize" class="flex space-x-5 ml-4 2xl:ml-8">
+              <button
+                class="flex items-center bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-gray-50 font-semibold cursor-pointer"
+                (click)="prevPage()"
+                [disabled]="currentPage === 1"
+              >
+              <fa-icon class="text-xl mr-2" [icon]="prevIcon"></fa-icon>
+                <p>Previous</p>
+              </button>
+              <button
+                class="flex items-center bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-gray-50 font-semibold"
+                (click)="nextPage()"
+                [disabled]="currentPage === getTotalPages()"
+              >
+                <p>Next</p>
+                <fa-icon class="text-xl ml-2" [icon]="nextIcon"></fa-icon>
+              </button>
+            </div>
+    </div>
+    <!-- 1st condition div end -->
+  </div>
+</div>
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { faEdit, faTrash, faPlus, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { MessServiceService } from '../../../services/mess-service.service';
+import { fund } from '../../../interface/data-type';
+
+@Component({
+  selector: 'app-fund',
+  templateUrl: './fund.component.html',
+  styleUrl: './fund.component.css'
+})
+export class FundComponent implements OnInit {
+
+  editIcon = faEdit;
+  deleteIcon = faTrash;
+  plusIcon = faPlus;
+  nextIcon = faArrowRight;
+  prevIcon = faArrowLeft;
+  funds: fund[] = [];
+  currentPage = 1;
+  pageSize = 10;
+
+  constructor(private messService: MessServiceService) {}
+
+  ngOnInit(): void {
+    this.loadFunds();
+  }
+
+
+  loadFunds() {
+    this.messService.getFundList().subscribe((result) => {
+      this.funds = result;
+    })
+  }
+
+
+  getPaginatedFunds(): fund[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.funds.slice(startIndex, startIndex + this.pageSize);
+  }
+
+
+  nextPage(): void {
+    if (this.currentPage < this.getTotalPages()) {
+      this.currentPage++;
+    }
+  }
+
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  getTotalPages(): number {
+    return Math.ceil(this.funds.length / this.pageSize);
+  }
+
+
+  delete(data: any) {
+    
+  }
+}

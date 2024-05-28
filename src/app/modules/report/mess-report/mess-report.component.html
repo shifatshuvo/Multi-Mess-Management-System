@@ -1,0 +1,41 @@
+<div class="w-full min-h-screen bg-gray-200">
+  <!-- orders -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- 1st condition div start -->
+    <!-- *ngIf="userRole === 'ADMIN'" -->
+    <div >
+      <div class="flex flex-col justify-center p-4 2xl:p-8">
+        <h1 class="text-3xl text-center text-gray-500 font-semibold my-8">
+          Mess Report
+        </h1>
+        <table class="table-auto text-center font-semibold shadow-md">
+          <thead class="">
+            <tr class="bg-blue-500 text-gray-200">
+              <th class="px-1 py-6">Collected Fund</th>
+              <th class="px-8 py-6">Cost</th>
+              <th class="px-8 py-6">Balance</th>
+              <th class="px-6 py-6">Meals</th>
+              <th class="px-4 py-6">Meal Rate</th>
+            </tr>
+          </thead>
+          
+          <tbody class="bg-gray-50">
+            <tr class="border-b-2">
+              <td class="px-4 py-6 text-gray-500">{{mReport?.collectedFunds}}</td>
+              <td class="bg-blue-200 px-4 py-6 text-gray-900">{{mReport?.cost}}</td>
+              <td class="px-4 py-6 text-gray-500">{{mReport?.balance}}</td>
+              <td class="bg-blue-200 px-4 py-6 text-gray-900">{{mReport?.meals}}</td>
+              <td class="px-4 py-6 text-gray-500">{{mReport?.mealRate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <app-user-report />
+      </div>
+
+    </div>
+    <!-- 1st condition div end -->
+  </div>
+</div>

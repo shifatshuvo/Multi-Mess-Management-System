@@ -1,0 +1,174 @@
+<!-- <div style="width: 20%; float: left;">Side Nav</div>
+<div>
+  <router-outlet />
+</div> -->
+
+
+          <!-- <tbody class="bg-gray-50 border-b-8">
+            <tr class="">
+              <td class="px-4 py-2">id</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">other</td>
+              <td class="px-4 py-2 space-x-6">
+                <a
+                  routerLink="/admin/update-order/id"
+                  class="text-2xl text-green-600 hover:text-green-500"
+                  >
+                  <fa-icon [icon]="editIcon"></fa-icon>
+                </a>
+                <button
+                  (click)="delete()"
+                  class="text-2xl text-red-600 hover:text-red-500"
+                >
+                  <fa-icon [icon]="deleteIcon"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody> -->
+
+          <!-- *ngFor="let item of orderList" -->
+
+          <!-- <tbody class="bg-gray-50 border-b-8">
+            <tr >
+              <td class="px-4 py-2">id</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">other</td>
+              <td class="px-4 py-2 space-x-6">
+                <a
+                  routerLink="/admin/update-order/id"
+                  class="text-2xl text-green-600 hover:text-green-500"
+                  >
+                  <fa-icon [icon]="editIcon"></fa-icon>
+                </a>
+                <button
+                  (click)="delete()"
+                  class="text-2xl text-red-600 hover:text-red-500"
+                >
+                  <fa-icon [icon]="deleteIcon"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody> -->
+          
+          <!-- <tbody class="bg-white border-b-8">
+            <tr >
+              <td class="px-4 py-2">id</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">data</td>
+              <td class="px-4 py-2 text-gray-500">other</td>
+              <td class="px-4 py-2 space-x-6">
+                <a
+                  routerLink="/admin/update-order/id"
+                  class="text-2xl text-green-600 hover:text-green-500"
+                  >
+                  <fa-icon [icon]="editIcon"></fa-icon>
+                </a>
+                <button
+                  (click)="delete()"
+                  class="text-2xl text-red-600 hover:text-red-500"
+                >
+                  <fa-icon [icon]="deleteIcon"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody> -->
+
+
+
+
+
+          
+          <!-- <tbody class="bg-gray-50">
+            <tr class="border-b-2">
+              <td class="bg-blue-200 px-4 py-4">2</td>
+              <td class="px-4 py-4 text-gray-500">data</td>
+              <td class="bg-blue-200 px-4 py-4 text-gray-900">data</td>
+              <td class="px-4 py-4 text-gray-500">data</td>
+              <td class="bg-blue-200 px-4 py-4 text-gray-900">other</td>
+              <td class="px-4 py-4 text-gray-500">other</td>
+            </tr>
+          </tbody>
+          
+          <tbody class="bg-white">
+            <tr class="border-b-2">
+              <td class="bg-blue-200 px-4 py-4">3</td>
+              <td class="px-4 py-4 text-gray-500">data</td>
+              <td class="bg-blue-200 px-4 py-4 text-gray-900">data</td>
+              <td class="px-4 py-4 text-gray-500">data</td>
+              <td class="bg-blue-200 px-4 py-4 text-gray-900">other</td>
+              <td class="px-4 py-4 text-gray-500">other</td>
+            </tr>
+          </tbody> -->
+
+
+
+
+
+
+          //// members start
+          <div class="w-full min-h-screen bg-gray-200">
+            <!-- orders -->
+            <div class="flex-1 overflow-y-auto">
+              <!-- 1st condition div start -->
+              <!-- *ngIf="userRole === 'ADMIN'" -->
+              <div >
+                <div class="flex flex-col justify-center p-4 2xl:p-8">
+                  <h1 class="text-3xl text-center text-gray-500 font-semibold my-6">
+                    Members
+                  </h1>
+                  <div class="mb-4">
+                    <button
+                      routerLink="#"
+                      class="flex items-center bg-blue-600 hover:bg-blue-500 text-gray-50 font-semibold py-1 px-3 rounded-md shadow-md"
+                    >
+                      <p class="text-base pr-2">Add Member</p>
+                      <fa-icon class="text-2xl" [icon]="plusIcon"></fa-icon>
+                    </button>
+                  </div>
+                  <table class="table-auto text-center font-semibold">
+                    <thead class="border-b-8-">
+                      <tr class="bg-blue-500 text-gray-200">
+                        <th class="px-1 py-4">S.N</th>
+                        <th class="px-2 py-2">User Name</th>
+                        <th class="px-1 py-4">Email</th>
+                        <th class="px-6 py-2">Phone</th>
+                        <th class="px-6 py-2">Action</th>
+                      </tr>
+                    </thead>
+          
+                    
+                    <tbody *ngFor="let item of userList; let i = index" class="bg-gray-50">
+                      <tr  class="border-b-2">
+                        <td class="bg-blue-200 px-4 py-3 text-gray-900">{{i + 1}}</td>
+                        <td class="px-4 py-4 text-gray-500">{{item.name}}</td>
+                        <td class="bg-blue-200 px-4 py-3 text-gray-900">{{item.email}}</td>
+                        <td class="px-4 py-3">{{item.phone}}</td>
+                        <td class="bg-blue-200 px-4 py-3 text-gray-900 space-x-6">
+                          <a
+                            routerLink="#"
+                            class="text-2xl text-green-600 hover:text-green-500"
+                            >
+                            <fa-icon [icon]="editIcon"></fa-icon>
+                          </a>
+                          <button
+                            (click)="delete(item.id)"
+                            class="text-2xl text-red-600 hover:text-red-500"
+                          >
+                            <fa-icon [icon]="deleteIcon"></fa-icon>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+          
+                  </table>
+                </div>
+              </div>
+              <!-- 1st condition div end -->
+            </div>
+          </div>
+          //// members end

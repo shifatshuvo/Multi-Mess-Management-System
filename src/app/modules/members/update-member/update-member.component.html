@@ -1,0 +1,16 @@
+<div class="flex items-center justify-center">
+  <div class="md:w-2/6 mt-24 bg-gray-300 px-4 py-6 rounded-md shadow-lg">
+    <h1 class="text-3xl font-semibold text-center text-violet-600 font-serif py-4 px-2">Update Member</h1>
+    <p class="text-xl text-center text-green-600 font-semibold">{{updateMessage}}</p>
+
+    <form [formGroup]="updateUserForm" (ngSubmit)="submit()" class="w-full- flex flex-col items-center gap-y-3 my-4 mx-4">
+      <input formControlName="name" type="text" name="name" id="name" ngModel="{{ userData?.name }}" placeholder="Enter name" class="w-full outline-none rounded-md py-2 pl-4"/>
+      <input formControlName="email" type="text" name="email" id="email" ngModel="{{ userData?.email }}" placeholder="Enter Email" class="w-full outline-none rounded-md py-2 pl-4"/>
+      <input formControlName="password" type="password" name="password" id="password" ngModel="{{ userData?.password }}" placeholder="Enter Password" class="w-full outline-none rounded-md py-2 pl-4"/>
+      <input formControlName="phone" type="phone" name="phone" id="phone" ngModel="{{ userData?.phone }}" placeholder="Enter phone" class="w-full outline-none rounded-md py-2 pl-4"/>
+      <input formControlName="role" type="text" name="role" id="role" ngModel="{{ userData?.role }}" placeholder="Enter role" class="w-full outline-none rounded-md py-2 pl-4"/>
+      <button type="submit" class="w-32 bg-blue-500 text-gray-50 font-semibold py-2 mt-6 rounded-md">Update</button>
+    </form>
+
+  </div>
+</div>

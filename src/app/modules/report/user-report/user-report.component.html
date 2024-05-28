@@ -1,0 +1,70 @@
+<div>
+  <!-- maybe conditional div -->
+  <div class="flex flex-col justify-center p-4 2xl:p-8">
+    <h1 class="text-3xl text-center text-gray-500 font-semibold my-6">
+      User Report
+    </h1>
+    <p class="text-center text-red-500 text-xl font-semibold mb-2">{{message}}</p>
+    <!-- User report by select for manager, Start -->
+    <form
+      *ngIf="userData?.role === 'MANAGER'"
+      #selectAUser="ngForm"
+      (ngSubmit)="userSelect(selectAUser.value)"
+      class="w-full flex justify-center mb-6 space-x-4"
+    >
+      <div class="w-2/6">
+        <select
+          class="w-full py-2 pl-4 rounded-md"
+          id="userId"
+          [(ngModel)]="selectedUser"
+          name="userId"
+        >
+          <option class="" [ngValue]="undefined" [disabled]="true" selected>
+            Select User
+          </option>
+          <option
+            class="bg-gray-100"
+            *ngFor="let user of userList; let i = index"
+            [ngValue]="user.id"
+          >
+            {{ i + 1 }} : {{ user.name }}
+          </option>
+        </select>
+      </div>
+      <div class="">
+        <button
+          class="w-32 bg-blue-500 hover:bg-blue-600 text-gray-50 font-semibold py-2 rounded-md"
+        >
+          View Report
+        </button>
+      </div>
+    </form>
+    
+    <!-- User report by select for manager, End -->
+    <table class="table-auto text-center font-semibold shadow-md">
+      <thead class="">
+        <tr class="bg-blue-500 text-gray-200">
+          <th class="px-1 py-6">Collected Fund</th>
+          <th class="px-8 py-6">Cost</th>
+          <th class="px-8 py-6">Balance</th>
+          <th class="px-6 py-6">Meals</th>
+          <th class="px-4 py-6">Meal Rate</th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-gray-50">
+        <tr class="border-b-2">
+          <td class="px-4 py-6 text-gray-500">{{ userReport?.collectedFunds }}</td>
+          <td class="bg-blue-200 px-4 py-6 text-gray-900">
+            {{ userReport?.cost }}
+          </td>
+          <td class="px-4 py-6 text-gray-500">{{ userReport?.balance }}</td>
+          <td class="bg-blue-200 px-4 py-6 text-gray-900">
+            {{ userReport?.meals }}
+          </td>
+          <td class="px-4 py-6 text-gray-500">{{ userReport?.mealRate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

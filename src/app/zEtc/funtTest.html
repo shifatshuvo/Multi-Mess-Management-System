@@ -1,0 +1,62 @@
+<div class="flex items-center justify-center">
+  <div class="md:w-2/6 mt-8 bg-gray-300 px-4 py-6 rounded-md shadow-lg">
+    <button
+      class="font-semibold text-gray-600 hover:text-green-600"
+      routerLink="/fund"
+    >
+      <fa-icon class="pr-2" [icon]="backIcon"></fa-icon>Back
+    </button>
+    <h1
+      class="text-3xl font-semibold text-center text-violet-600 font-serif py-4 px-2"
+    >
+      Update Fund
+    </h1>
+    <!-- <p class="text-xl text-center text-green-600 font-semibold">{{updateFundMessage}}</p> -->
+    <form
+      #upFund="ngForm"
+      (ngSubmit)="updateFund(upFund.value)"
+      class="w-full- flex flex-col items-center gap-y-3 my-4 mx-4"
+    >
+      <select
+        class="w-full py-2 pl-4 rounded-md"
+        id="userId"
+        [(ngModel)]="selectedUser"
+        name="userId"
+        (ngModelChange)="onUserChange($event)"
+      >
+        <option class="" [ngValue]="undefined" [disabled]="true" selected>
+          ID: {{ fundData?.user?.id }} - {{ fundData?.user?.name }}
+        </option>
+        <option
+          class="bg-gray-100"
+          *ngFor="let user of users"
+          [ngValue]="user.id"
+        >
+          ID: {{ user.id }} - {{ user.name }}
+        </option>
+      </select>
+
+      <input
+        class="w-full outline-none rounded-md py-2 pl-4"
+        type="number"
+        name="cash"
+        id="cash"
+        ngModel="{{ fundData?.cash }}"
+        placeholder="Enter cash"
+      />
+      <input
+        class="w-full outline-none rounded-md py-2 pl-4"
+        type="date"
+        name="date"
+        id="date"
+        ngModel="{{ fundData?.date }}"
+        placeholder="Enter date"
+      />
+      <button
+        class="w-32 bg-blue-500 text-gray-50 font-semibold py-2 mt-6 rounded-md"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>

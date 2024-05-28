@@ -1,0 +1,71 @@
+<div class="flex items-center justify-center">
+  <div class="md:w-2/6 mt-8 bg-gray-300 px-4 py-6 rounded-md shadow-lg">
+    <button
+      class="font-semibold text-gray-600 hover:text-green-600"
+      routerLink="/grocery/grocery-bill"
+    >
+      <fa-icon class="pr-2" [icon]="backIcon"></fa-icon>Back
+    </button>
+    <h1
+      class="text-3xl font-semibold text-center text-violet-600 font-serif py-4 px-2"
+    >
+      Update Grocery
+    </h1>
+    <p class="text-xl text-center text-green-600 font-semibold">{{updateMessage}}</p>
+    <form
+      #upGrocery="ngForm"
+      (ngSubmit)="updateGrocery(upGrocery.value, groceryData?.mess?.id)"
+      class="w-full- flex flex-col items-center gap-y-3 my-4 mx-4"
+    >
+      <select
+        class="w-full py-2 pl-4 rounded-md"
+        id="userId"
+        [(ngModel)]="selectedUser"
+        name="userId"
+        (ngModelChange)="onUserChange($event)"
+      >
+        <option class="" [ngValue]="undefined" [disabled]="true" selected>
+          ID: {{ groceryData?.user?.id }} - {{ groceryData?.user?.name }}
+        </option>
+        <option
+          class="bg-gray-100"
+          *ngFor="let user of users"
+          [ngValue]="user.id"
+        >
+          ID: {{ user.id }} - {{ user.name }}
+        </option>
+      </select>
+
+      <input
+        class="w-full outline-none rounded-md py-2 pl-4"
+        type="number"
+        name="amount"
+        id="amount"
+        ngModel="{{ groceryData?.amount }}"
+        placeholder="Enter amount"
+      />
+      <input
+        class="w-full outline-none rounded-md py-2 pl-4"
+        type="date"
+        name="date"
+        id="date"
+        ngModel="{{ groceryData?.date }}"
+        placeholder="Enter date"
+      />
+      <textarea
+        class="w-full outline-none rounded-md py-2 pl-4"
+        type="text"
+        name="description"
+        id="description"
+        ngModel="{{ groceryData?.description }}"
+        placeholder="Enter description"
+      >
+      </textarea>
+      <button
+        class="w-32 bg-blue-500 text-gray-50 font-semibold py-2 mt-6 rounded-md"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>
